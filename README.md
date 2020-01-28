@@ -1,5 +1,6 @@
 ## FusionAuth Kickstart Examples
 
+See [Kickstart Documentation](https://fusionauth.io/docs/v1/tech/installation-guide/kickstart) for additional help.
 
 
 ```
