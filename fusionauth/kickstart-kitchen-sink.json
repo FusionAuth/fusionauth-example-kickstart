@@ -1,0 +1,79 @@
+{
+  "variables": {
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "defaultEditor": "#{ENV.EDITOR}",
+    "homeDirectory": "#{ENV.HOME}",
+    "adminEmail": "admin@fusionauth.io",
+    "adminPassword": "password",
+    "user.name": "foo",
+    "anotherId": "#{UUID()}"
+  },
+  "apiKeys": [
+    {
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "description": "Standard development API key"
+    },
+    {
+      "key": "43d3eca9b0664a929f64b67230898d9516a5ecf0fa1d446f8122c8d6a5cc2709",
+      "description": "My Production API key #{homeDirectory} #{defaultEditor} \\#{defaultEditor}",
+      "permissions": {
+        "endpoints": {
+          "/api/user": ["GET"]
+        }
+      }
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/application/42d7d823-4c89-4ccd-8c47-1259247103a7",
+      "body": {
+        "application": {
+          "data": {
+            "escaped1": "\\#{adminEmail}",
+            "escaped2": "\\&{requests/change-password.json}",
+            "escaped3": "\\@{emails/change-password.html.ftl}",
+            "escaped4": "\\#{ENV.HOME}",
+            "escaped5": "\\#{UUID()}",
+            "notEscaped1": "#{ENV.HOME}",
+            "literal1": "\\\\#{adminEmail}",
+            "literal2": "\\\\&{requests/change-password.json}",
+            "literal3": "\\\\@{emails/change-password.html.ftl}"
+          },
+          "name": "Awesome Application"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration",
+      "body": {
+        "user": {
+          "email": "#{adminEmail}",
+          "password": "#{adminPassword}"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/group/f4193c92-803c-4554-a6cf-807754a93834",
+      "body": {
+        "group": {
+          "name": "Awesome Group"
+        }
+      }
+    },
+    "&{requests/change-password.json}",
+    {
+      "method": "POST",
+      "url": "/api/email/template/e160cc59-a73e-4d95-8287-f82e5c541a5c",
+      "body": "&{json/setup-password.json}"
+    }
+  ]
+}

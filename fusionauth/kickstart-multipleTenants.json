@@ -1,0 +1,90 @@
+{
+  "variables": {
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "adminEmail": "admin@fusionauth.io",
+    "adminPassword": "password",
+    "secondTenantId" : "fedf8cb2-457d-46c6-bbe4-1bf8debc1534",
+    "thirdTenant" : "36bbf227-e11a-4f35-9845-082b7270aa56"
+  },
+  "apiKeys": [
+    {
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "description": "Standard development API key"
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/tenant/#{secondTenantId}",
+      "body": {
+        "sourceTenantId": "#{defaultTenantId}",
+        "tenant": {
+          "name": "Awesome Tenant 2"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/tenant/#{thirdTenant}",
+      "body": {
+        "sourceTenantId": "#{FUSIONAUTH_TENANT_ID}",
+        "tenant": {
+          "name": "Awesome Tenant 3"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/42d7d823-4c89-4ccd-8c47-1259247103a7",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "Awesome Application"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "user": {
+          "email": "#{adminEmail}",
+          "password": "#{adminPassword}"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/group/f4193c92-803c-4554-a6cf-807754a93834",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "group": {
+          "name": "Awesome Group"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/group/02d4bcd9-afda-47b0-9e21-d92c35132ea2",
+      "tenantId": "#{secondTenantId}",
+      "body": {
+        "group": {
+          "name": "Awesome Group"
+        }
+      }
+    },
+    "&{requests/change-password.json}",
+    {
+      "method": "POST",
+      "url": "/api/email/template/e160cc59-a73e-4d95-8287-f82e5c541a5c",
+      "body": "&{json/setup-password.json}"
+    }
+  ]
+}
