@@ -5,6 +5,7 @@ See [Kickstart Documentation](https://fusionauth.io/docs/v1/tech/installation-gu
 
 ```
 |- contrib/
+|- example-apps/
 |- fusionauth/
 |  |- emails/
 |  |  |- *

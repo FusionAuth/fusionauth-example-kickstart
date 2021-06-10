@@ -1,0 +1,235 @@
+{
+  "variables": {
+    "adminEmail": "admin@fusionauth.io",
+    "password": "password",
+    "defaultTenantId": "30663132-6464-6665-3032-326466613934",
+    "ppvcTenantId": "40d06b99-b75f-4a4d-8ef8-4944a489ba63"
+  },
+  "apiKeys": [
+    {
+      "key": "Wkk1s8Fql3IONu6lu8bweKxBzEoaDtJ7BhlYBy3aibSHMklWtneFnEMj",
+      "keyManager" : true,
+      "description": "Key Manager API key"
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/tenant/#{ppvcTenantId}",
+      "body": {
+        "tenant": {
+          "emailConfiguration": {
+            "defaultFromEmail": "no-reply@fusionauth.io",
+            "host": "localhost",
+            "port": 25,
+            "unverified": {
+              "allowEmailChangeWhenGated": false,
+              "behavior": "Allow"
+            },
+            "verificationStrategy": "ClickableLink",
+            "verifyEmail": false,
+            "verifyEmailWhenChanged": false
+          },
+          "externalIdentifierConfiguration": {
+            "authorizationGrantIdTimeToLiveInSeconds": 30,
+            "changePasswordIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "changePasswordIdTimeToLiveInSeconds": 600,
+            "deviceCodeTimeToLiveInSeconds": 1800,
+            "deviceUserCodeIdGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "emailVerificationIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "emailVerificationIdTimeToLiveInSeconds": 86400,
+            "emailVerificationOneTimeCodeGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "externalAuthenticationIdTimeToLiveInSeconds": 300,
+            "oneTimePasswordTimeToLiveInSeconds": 60,
+            "passwordlessLoginGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "passwordlessLoginTimeToLiveInSeconds": 180,
+            "pendingAccountLinkTimeToLiveInSeconds": 3600,
+            "registrationVerificationIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "registrationVerificationIdTimeToLiveInSeconds": 86400,
+            "registrationVerificationOneTimeCodeGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "samlv2AuthNRequestIdTimeToLiveInSeconds": 300,
+            "setupPasswordIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "setupPasswordIdTimeToLiveInSeconds": 86400,
+            "twoFactorIdTimeToLiveInSeconds": 300,
+            "twoFactorOneTimeCodeIdGenerator": {
+              "length": 6,
+              "type": "randomDigits"
+            },
+            "twoFactorOneTimeCodeIdTimeToLiveInSeconds": 60,
+            "twoFactorTrustIdTimeToLiveInSeconds": 2592000
+          },
+          "issuer": "https://app.piedpipervideochat.com",
+          "jwtConfiguration": {
+            "accessTokenKeyId": "#{FUSIONAUTH_DEFAULT_SIGNING_KEY_ID}",
+            "idTokenKeyId": "092dbedc-30af-4149-9c61-b578f2c72f59",
+            "refreshTokenExpirationPolicy": "Fixed",
+            "refreshTokenRevocationPolicy": {
+              "onLoginPrevented": true,
+              "onPasswordChanged": true
+            },
+            "refreshTokenTimeToLiveInMinutes": 43200,
+            "refreshTokenUsagePolicy": "Reusable",
+            "timeToLiveInSeconds": 3600
+          },
+          "name": "PPVC Control Plane Tenant",
+          "themeId": "75a068fd-e94b-451a-9aeb-3ddb9a3b5987"
+        }
+      }
+    }  ,
+    {
+      "method": "POST",
+      "url": "/api/application/85a03867-dccf-4882-adde-1a79aeec50df",
+      "tenantId": "#{ppvcTenantId}",
+      "body": {
+        "application": {
+          "name": "Pied Piper Video Chat",
+          "oauthConfiguration": {
+            "authorizedRedirectURLs": [
+              "https://app.piedpipervideochat.com/login/callback"
+            ],
+            "enabledGrants": [
+              "authorization_code"
+            ],
+            "logoutBehavior": "AllApplications",
+            "logoutURL": "https://app.piedpipervideochat.com/"
+          },
+          "registrationConfiguration": {
+            "enabled": true,
+            "type": "basic"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
+      "body": {
+        "user": {
+          "birthDate": "1981-06-04",
+          "email": "#{adminEmail}",
+          "firstName": "Admin",
+          "lastName": "User",
+          "password": "#{password}"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/tenant",
+      "body": {
+        "tenant": {
+          "emailConfiguration": {
+            "defaultFromEmail": "no-reply@fusionauth.io",
+            "host": "localhost",
+            "port": 25,
+            "unverified": {
+              "allowEmailChangeWhenGated": false,
+              "behavior": "Allow"
+            },
+            "verificationStrategy": "ClickableLink",
+            "verifyEmail": false,
+            "verifyEmailWhenChanged": false
+          },
+          "externalIdentifierConfiguration": {
+            "authorizationGrantIdTimeToLiveInSeconds": 30,
+            "changePasswordIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "changePasswordIdTimeToLiveInSeconds": 600,
+            "deviceCodeTimeToLiveInSeconds": 1800,
+            "deviceUserCodeIdGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "emailVerificationIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "emailVerificationIdTimeToLiveInSeconds": 86400,
+            "emailVerificationOneTimeCodeGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "externalAuthenticationIdTimeToLiveInSeconds": 300,
+            "oneTimePasswordTimeToLiveInSeconds": 60,
+            "passwordlessLoginGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "passwordlessLoginTimeToLiveInSeconds": 180,
+            "pendingAccountLinkTimeToLiveInSeconds": 3600,
+            "registrationVerificationIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "registrationVerificationIdTimeToLiveInSeconds": 86400,
+            "registrationVerificationOneTimeCodeGenerator": {
+              "length": 6,
+              "type": "randomAlphaNumeric"
+            },
+            "samlv2AuthNRequestIdTimeToLiveInSeconds": 300,
+            "setupPasswordIdGenerator": {
+              "length": 32,
+              "type": "randomBytes"
+            },
+            "setupPasswordIdTimeToLiveInSeconds": 86400,
+            "twoFactorIdTimeToLiveInSeconds": 300,
+            "twoFactorOneTimeCodeIdGenerator": {
+              "length": 6,
+              "type": "randomDigits"
+            },
+            "twoFactorOneTimeCodeIdTimeToLiveInSeconds": 60,
+            "twoFactorTrustIdTimeToLiveInSeconds": 2592000
+          },
+          "issuer": "https://piedpipervideochat.com",
+          "jwtConfiguration": {
+            "accessTokenKeyId": "#{FUSIONAUTH_DEFAULT_SIGNING_KEY_ID}",
+            "idTokenKeyId": "092dbedc-30af-4149-9c61-b578f2c72f59",
+            "refreshTokenExpirationPolicy": "Fixed",
+            "refreshTokenRevocationPolicy": {
+              "onLoginPrevented": true,
+              "onPasswordChanged": true
+            },
+            "refreshTokenTimeToLiveInMinutes": 43200,
+            "refreshTokenUsagePolicy": "Reusable",
+            "timeToLiveInSeconds": 3600
+          },
+          "name": "Blueprint Tenant",
+          "themeId": "75a068fd-e94b-451a-9aeb-3ddb9a3b5987"
+        }
+      }
+    }  
+  ]
+}
+
