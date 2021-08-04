@@ -1,0 +1,221 @@
+{
+  "variables": {
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "defaultEditor": "#{ENV.EDITOR}",
+    "homeDirectory": "#{ENV.HOME}",
+    "adminEmail": "admin@fusionauth.io",
+    "adminPassword": "password",
+    "flaskAppId": "#{UUID()}",
+    "registrationFormId": "#{UUID()}",
+    "geoFieldId": "#{UUID()}",
+    "maxPriceField": "#{UUID()}",
+    "minPriceFieldId": "#{UUID()}"
+  },
+  "apiKeys": [
+    {
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "description": "python development API key",
+      "tenantId": "#{FUSIONAUTH_TEANANT_ID}"
+    },
+    {
+      "key": "43d3eca9b0664a929f64b67230898d9516a5ecf0fa1d446f8122c8d6a5cc2709",
+      "description": "python flask oauth API key",
+      "tenantId": "#{FUSIONAUTH_TEANANT_ID}",
+      "permissions": {
+        "endpoints": {
+          "/api/user/registration": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "/api/form": [
+            "GET"
+          ],
+          "/api/form/field": [
+            "GET"
+          ]
+        }
+      }
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/form/field/ce2469f6-ed8a-4488-bf24-b3cda7cf90b4",
+      "body": {
+        "field": {
+          "control": "text",
+          "key": "user.username",
+          "name": "[Unique username] Username",
+          "required": true
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/ce2469f6-ed6a-4488-bf24-b3cda7cf90b4",
+      "body": {
+        "field": {
+          "control": "text",
+          "key": "user.email",
+          "name": "[Unique username] Email",
+          "required": true
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/ce2169f6-ed8a-4488-bf24-b3dda1cf90b4",
+      "body": {
+        "field": {
+          "control": "password",
+          "key": "user.password",
+          "name": "[Unique username] Password",
+          "required": true
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/ce2169f6-ed8a-4488-bf24-b3c2a1cf90b4",
+      "body": {
+        "field": {
+          "control": "string",
+          "key": "user.mobilePhone",
+          "name": "[Unique username] Mobile Phone",
+          "required": true
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{geoFieldId}",
+      "body": {
+        "field": {
+          "control": "string",
+          "name": "Real Estate Form",
+          "key": "registration.data.geographicdata"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{maxPriceFieldId}",
+      "body": {
+        "field": {
+          "control": "number",
+          "name": "Real Estate Form",
+          "key": "registration.data.maxprice"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{minPriceFieldId}",
+      "body": {
+        "field": {
+          "control": "number",
+          "name": "Real Estate Form",
+          "key": "registration.data.minprice"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/#{registrationFormId}",
+      "body": {
+        "form": {
+          "name": "Real Estate Form",
+          "type": "registration",
+          "steps": [
+            {
+              "fields": [
+                "ce2469f6-ed8a-4488-bf24-b3cda7cf90b4",
+                "ce2469f6-ed6a-4488-bf24-b3cda7cf90b4",
+                "ce2169f6-ed8a-4488-bf24-b3dda1cf90b4",
+                "ce2169f6-ed8a-4488-bf24-b3c2a1cf90b4"
+              ]
+            },
+            {
+              "fields": [
+                "#{geoFieldId}",
+                "#{maxPriceFieldId}",
+                "#{minPriceFieldId}"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/#{flaskAppId}",
+      "tenantId": "#{FUSIONAUTH_TEANANT_ID}",
+      "body": {
+        "application": {
+          "name": "My Flask Application",
+          "oauthConfiguration": {
+            "authorizedRedirectURLs": [
+              "http://localhost:5000/callback"
+            ],
+            "logoutURL": "http://localhost:5000"
+          },
+          "registrationConfiguration": {
+            "enabled": true,
+            "type": "advanced",
+            "formId": "#{registrationFormId}"
+          },
+          "roles": [
+            {
+              "name": "admin"
+            },
+            {
+              "name": "user"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
+      "body": {
+        "user": {
+          "birthDate": "1981-06-04",
+          "email": "#{adminEmail}",
+          "firstName": "Admin",
+          "lastName": "User",
+          "password": "#{adminPassword}"
+        },
+        "registration": {
+          "applicationId": "#{flaskAppId}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
+      "body": {
+        "user": {
+          "birthDate": "1981-06-04",
+          "email": "test@example.com",
+          "firstName": "Test",
+          "lastName": "User",
+          "password": "password"
+        },
+        "registration": {
+          "applicationId": "#{flaskAppId}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    }
+  ]
+}
+
