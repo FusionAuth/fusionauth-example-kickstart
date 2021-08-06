@@ -36,3 +36,9 @@ Shows an example of a bit of everything, including environment variables, UUID g
 *kickstart-multiple-tenants.json*
 
 Demonstrates adding multiple tenants.
+
+### Example Apps
+
+This directory contains kickstart files corresponding to example applications. 
+
+You can view the full list of example applications available for FusionAuth here: https://fusionauth.io/docs/v1/tech/example-apps/
