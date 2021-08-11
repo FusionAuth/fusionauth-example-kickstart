@@ -1,26 +1,25 @@
 {
   "variables": {
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
-    "defaultEditor": "#{ENV.EDITOR}",
-    "homeDirectory": "#{ENV.HOME}",
     "adminEmail": "admin@fusionauth.io",
     "adminPassword": "password",
     "flaskAppId": "#{UUID()}",
     "registrationFormId": "#{UUID()}",
     "geoFieldId": "#{UUID()}",
-    "maxPriceField": "#{UUID()}",
+    "maxPriceFieldId": "#{UUID()}",
     "minPriceFieldId": "#{UUID()}"
   },
+  "licenseId": "{YOUR_FUSIONAUTH_LICENSE_KEY}",
   "apiKeys": [
     {
+
       "key": "bf69486b-4733-4470-a592-f1bfce7af580",
-      "description": "python development API key",
-      "tenantId": "#{FUSIONAUTH_TEANANT_ID}"
+      "description": "Standard development API key"
     },
     {
-      "key": "43d3eca9b0664a929f64b67230898d9516a5ecf0fa1d446f8122c8d6a5cc2709",
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
       "description": "python flask oauth API key",
-      "tenantId": "#{FUSIONAUTH_TEANANT_ID}",
+      "tenantId": "#{defaultTenantId}",
       "permissions": {
         "endpoints": {
           "/api/user/registration": [
@@ -82,7 +81,7 @@
       "url": "/api/form/field/ce2169f6-ed8a-4488-bf24-b3c2a1cf90b4",
       "body": {
         "field": {
-          "control": "string",
+          "control": "text",
           "key": "user.mobilePhone",
           "name": "[Unique username] Mobile Phone",
           "required": true
@@ -94,8 +93,8 @@
       "url": "/api/form/field/#{geoFieldId}",
       "body": {
         "field": {
-          "control": "string",
-          "name": "Real Estate Form",
+          "control": "text",
+          "name": "Geographic Data",
           "key": "registration.data.geographicdata"
         }
       }
@@ -106,7 +105,7 @@
       "body": {
         "field": {
           "control": "number",
-          "name": "Real Estate Form",
+          "name": "Max Price",
           "key": "registration.data.maxprice"
         }
       }
@@ -117,7 +116,7 @@
       "body": {
         "field": {
           "control": "number",
-          "name": "Real Estate Form",
+          "name": "Min Price",
           "key": "registration.data.minprice"
         }
       }
@@ -152,7 +151,7 @@
     {
       "method": "POST",
       "url": "/api/application/#{flaskAppId}",
-      "tenantId": "#{FUSIONAUTH_TEANANT_ID}",
+      "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
           "name": "My Flask Application",
@@ -166,15 +165,7 @@
             "enabled": true,
             "type": "advanced",
             "formId": "#{registrationFormId}"
-          },
-          "roles": [
-            {
-              "name": "admin"
-            },
-            {
-              "name": "user"
-            }
-          ]
+          }
         }
       }
     },
@@ -183,14 +174,11 @@
       "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
       "body": {
         "user": {
-          "birthDate": "1981-06-04",
           "email": "#{adminEmail}",
-          "firstName": "Admin",
-          "lastName": "User",
           "password": "#{adminPassword}"
         },
         "registration": {
-          "applicationId": "#{flaskAppId}",
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
           "roles": [
             "admin"
           ]
@@ -199,7 +187,7 @@
     },
     {
       "method": "POST",
-      "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
+      "url": "/api/user/registration/00000000-0000-0000-0000-000000000002",
       "body": {
         "user": {
           "birthDate": "1981-06-04",
@@ -209,10 +197,7 @@
           "password": "password"
         },
         "registration": {
-          "applicationId": "#{flaskAppId}",
-          "roles": [
-            "admin"
-          ]
+          "applicationId": "#{flaskAppId}"
         }
       }
     }
