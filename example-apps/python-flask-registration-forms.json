@@ -159,7 +159,11 @@
             "authorizedRedirectURLs": [
               "http://localhost:5000/callback"
             ],
-            "logoutURL": "http://localhost:5000"
+            "enabledGrants": [
+              "authorization_code"
+            ],
+            "logoutURL": "http://localhost:5000",
+            "generateRefreshToken": true
           },
           "registrationConfiguration": {
             "enabled": true,
