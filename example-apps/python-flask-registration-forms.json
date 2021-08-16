@@ -1,7 +1,7 @@
 {
   "variables": {
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
-    "adminEmail": "admin@fusionauth.io",
+    "adminEmail": "admin@example.com",
     "adminPassword": "password",
     "flaskAppId": "#{UUID()}",
     "registrationFormId": "#{UUID()}",
@@ -9,7 +9,7 @@
     "maxPriceFieldId": "#{UUID()}",
     "minPriceFieldId": "#{UUID()}"
   },
-  "licenseId": "{YOUR_FUSIONAUTH_LICENSE_KEY}",
+  "licenseId": "nDB+bOBNk0S6Bt9yicu33PdBms3phj013xEMvDwvFHw",
   "apiKeys": [
     {
 
@@ -17,7 +17,7 @@
       "description": "Standard development API key"
     },
     {
-      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "key": "bf69186b-4733-4470-a592-f1bfce7af580",
       "description": "python flask oauth API key",
       "tenantId": "#{defaultTenantId}",
       "permissions": {
@@ -160,7 +160,8 @@
               "http://localhost:5000/callback"
             ],
             "enabledGrants": [
-              "authorization_code"
+              "authorization_code",
+              "refresh_token"
             ],
             "logoutURL": "http://localhost:5000",
             "generateRefreshToken": true
