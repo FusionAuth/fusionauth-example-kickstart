@@ -9,7 +9,7 @@
     "maxPriceFieldId": "#{UUID()}",
     "minPriceFieldId": "#{UUID()}"
   },
-  "licenseId": "nDB+bOBNk0S6Bt9yicu33PdBms3phj013xEMvDwvFHw",
+  "licenseId": "{YOUR_LICENSE_KEY}",
   "apiKeys": [
     {
 
