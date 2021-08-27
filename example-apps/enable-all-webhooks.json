@@ -1,0 +1,255 @@
+{
+  "variables": {
+    "adminEmail": "user@example.com",
+    "password": "password",
+    "defaultTenantId": "30663132-6464-6665-3032-326466613934"
+  },
+  "apiKeys": [{
+    "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+    "description": "Standard API key"
+  }],
+  "requests": [{
+      "method": "POST",
+      "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
+      "body": {
+        "user": {
+          "birthDate": "1981-06-04",
+          "email": "#{adminEmail}",
+          "firstName": "Erlich",
+          "lastName": "Bachman",
+          "password": "#{password}",
+          "data": {
+            "Company": "PiedPiper",
+            "PreviousCompany": "Aviato",
+            "user_type": "iconclast"
+          }
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/webhook",
+      "body": {
+        "webhook": {
+          "connectTimeout": 1000,
+          "description": "Store to s3",
+          "eventsEnabled": {
+            "jwt.public-key.update": true,
+            "jwt.refresh-token.revoke": true,
+            "jwt.refresh": true,
+            "audit-log.create": true,
+            "event-log.create": true,
+            "kickstart.success": true,
+            "user.action": true,
+            "user.bulk.create": true,
+            "user.create": true,
+            "user.create.complete": true,
+            "user.deactivate": true,
+            "user.delete": true,
+            "user.delete.complete": true,
+            "user.loginId.duplicate.create": true,
+            "user.loginId.duplicate.update": true,
+            "user.email.update": true,
+            "user.email.verified": true,
+            "user.login.failed": true,
+            "user.login.new-device": true,
+            "user.login.success": true,
+            "user.login.suspicious": true,
+            "user.password.breach": true,
+            "user.password.reset.send": true,
+            "user.password.reset.start": true,
+            "user.password.reset.success": true,
+            "user.password.update": true,
+            "user.reactivate": true,
+            "user.registration.create": true,
+            "user.registration.create.complete": true,
+            "user.registration.delete": true,
+            "user.registration.delete.complete": true,
+            "user.registration.update": true,
+            "user.registration.update.complete": true,
+            "user.registration.verified": true,
+            "user.two-factor.method.add": true,
+            "user.two-factor.method.remove": true,
+            "user.update": true,
+            "user.update.complete": true
+          },
+          "global": true,
+          "headers": {
+            "X-API-Key": "..."
+          },
+          "readTimeout": 2000,
+          "url": "https://webhookdestination.example.com/accept-webhook/"
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tenant/#{FUSIONAUTH_TENANT_ID}",
+      "body": {
+        "tenant": {
+          "eventConfiguration": {
+            "events": {
+              "jwt.public-key.update": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "jwt.refresh-token.revoke": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "jwt.refresh": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "audit-log.create": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "event-log.create": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "kickstart.success": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.action": {
+                "enabled": true
+              },
+              "user.bulk.create": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.create": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.create.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.deactivate": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.delete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.delete.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.loginId.duplicate.create": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.loginId.duplicate.update": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.email.update": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.email.verified": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.login.failed": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.login.new-device": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.login.success": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.login.suspicious": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.password.breach": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.password.reset.send": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.password.reset.start": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.password.reset.success": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.password.update": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.reactivate": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.create": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.create.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.delete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.delete.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.update": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.update.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.registration.verified": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.two-factor.method.add": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.two-factor.method.remove": {
+                "enabled": false,
+                "transactionType": "None"
+              },
+              "user.update": {
+                "enabled": true,
+                "transactionType": "None"
+              },
+              "user.update.complete": {
+                "enabled": true,
+                "transactionType": "None"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
