@@ -33,9 +33,10 @@
         "user": {
           "birthDate": "1981-06-04",
           "email": "#{adminEmail}",
-          "firstName": "Admin",
-          "lastName": "User",
-          "password": "#{adminPassword}"
+          "firstName": "Dinesh",
+          "lastName": "Chugtai",
+          "password": "#{adminPassword}",
+          "imageUrl": "https://local.fusionauth.io/images/doc-profile-pictures/photo-dinesh.png"
         },
         "registration": {
           "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
