@@ -1,7 +1,7 @@
 {
   "variables": {
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
-    "adminEmail": "admin@example.com",
+    "adminEmail": "dinesh@fusionauth.io",
     "adminPassword": "password",
     "joomlaAppId": "#{UUID()}",
     "adminUserId": "00000000-0000-0000-0000-000000000001"
