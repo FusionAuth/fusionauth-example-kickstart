@@ -20,8 +20,8 @@
       "tenantId": "#{defaultTenantId}",
       "body": {
         "key": {
-          "algorithm": "RS512",
-	  "name": "For ASP.NET app",
+          "algorithm": "RS256",
+	  "name": "For dotnetcore",
 	  "length": 2048
         }
       }
