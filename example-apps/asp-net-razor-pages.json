@@ -40,7 +40,8 @@
           },
           "jwtConfiguration": {
             "enabled": true,
-            "accessTokenKeyId": "#{asymmetricKeyId}"
+            "accessTokenKeyId": "#{asymmetricKeyId}",
+            "idTokenKeyId": "#{asymmetricKeyId}"
           }
         }
       }
