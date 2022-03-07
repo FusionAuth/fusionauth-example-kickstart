@@ -20,9 +20,11 @@
       "body": {
         "application": {
           "name": "Joomla",
-	  "authorizedOriginURLs": ["https://www.yoursite.com"],
-	  "authorizedRedirectURLs": ["https://www.yoursite.com"],
-	  "enabledGrants": ["authorization_code"]
+          "oauthConfiguration": {
+	    "authorizedOriginURLs": ["https://www.yoursite.com"],
+	    "authorizedRedirectURLs": ["https://www.yoursite.com"],
+	    "enabledGrants": ["authorization_code"]
+          }
         }
       }
     },
