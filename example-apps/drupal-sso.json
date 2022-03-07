@@ -20,10 +20,11 @@
       "body": {
         "application": {
           "name": "Drupal",
-	  "authorizedOriginURLs": ["https://www.yoursite.com"],
-	  "authorizedRedirectURLs": ["https://www.yoursite.com"],
-	  "enabledGrants": ["authorization_code"],
-	  "registrationConfiguration" : {
+          "oauthConfiguration": {
+	    "authorizedRedirectURLs": ["https://www.yoursite.com"],
+	    "enabledGrants": ["authorization_code"]
+          },
+	  "registrationConfiguration": {
             "enabled": true
           }
         }
