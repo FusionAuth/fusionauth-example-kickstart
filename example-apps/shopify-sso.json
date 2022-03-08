@@ -1,0 +1,63 @@
+{
+  "variables": {
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "adminEmail": "dinesh@fusionauth.io",
+    "adminPassword": "password",
+    "shopifyAppId": "#{UUID()}",
+    "adminUserId": "00000000-0000-0000-0000-000000000001"
+  },
+  "apiKeys": [
+    {
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "description": "Standard development API key"
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/application/#{shopifyAppId}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "Shopify",
+          "oauthConfiguration": {
+	    "authorizedRedirectURLs": ["https://store.xecurity.com/moas/broker/login/oauth/callback/20956"],
+	    "enabledGrants": ["authorization_code"]
+          },
+	  "registrationConfiguration": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{adminUserId}",
+      "body": {
+        "user": {
+          "email": "#{adminEmail}",
+          "firstName": "Monica",
+          "lastName": "Hall",
+          "password": "#{adminPassword}",
+          "imageUrl": "https://local.fusionauth.io/images/doc-profile-pictures/photo-monica.png"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{adminUserId}",
+      "body": {
+        "registration": {
+          "applicationId": "#{shopifyAppId}"
+        }
+      }
+    }
+  ]
+}
+
