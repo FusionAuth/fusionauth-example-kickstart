@@ -10,7 +10,6 @@
       "description": "Standard development API key"
     }
   ],
-  "supportId": "5acfd1b6-f687-ae13-8ffd-1900200c9a77",
   "requests": [
     {
       "method": "POST",
@@ -132,6 +131,20 @@
     },
     {
       "method": "POST",
+      "url": "/api/email/template/e6c74b53-d43d-471e-ae7e-906456d0f341",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "Your password is not secure",
+          "defaultHtmlTemplate": "@{emails/breached-password.html.ftl}",
+          "defaultTextTemplate": "@{emails/breached-password.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Breached Password Notification"
+        }
+      }
+    },
+    {
+      "method": "POST",
       "url": "/api/user/registration/00000000-0000-0000-0000-000000000001",
       "body": {
         "user": {
@@ -188,7 +201,7 @@
           "data": {
             "Company": "PiedPiper"
           },
-          "imageUrl": "https://local.fusionauth.io/images/doc-profile-pictures/photo-jared.png"
+          "imageUrl": "https://local.fusionauth.io/images/doc-profile-pictures/photo-big-head.png"
         },
         "registration": {
           "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
