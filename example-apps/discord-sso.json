@@ -1,0 +1,92 @@
+{
+  "variables": {
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "adminEmail": "monica@fusionauth.io",
+    "adminPassword": "password",
+    "discordAppId": "#{UUID()}",
+    "adminUserId": "00000000-0000-0000-0000-000000000001"
+  },
+  "apiKeys": [
+    {
+      "key": "bf69486b-4733-4470-a592-f1bfce7af580",
+      "description": "Standard development API key"
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/application/#{discordAppId}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "demo app",
+          "oauthConfiguration": {
+	    "authorizedRedirectURLs": ["http://localhost:9000"],
+	    "logoutUrl": "http://localhost:8080"],
+	    "enabledGrants": ["authorization_code","refresh_token"]
+          },
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{adminUserId}",
+      "body": {
+        "user": {
+          "birthDate": "1984-06-04",
+          "email": "#{adminEmail}",
+          "firstName": "Monica",
+          "lastName": "Hall",
+          "password": "#{adminPassword}",
+          "imageUrl": "https://local.fusionauth.io/images/doc-profile-pictures/photo-monica.png"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{adminUserId}",
+      "body": {
+        "registration": {
+          "applicationId": "#{discordAppId}"
+        }
+      }
+    },
+    "identityProvider": {
+      "applicationConfiguration": {
+        "#{discordAppId}": {
+          "createRegistration": true,
+          "enabled": true
+        }
+      },
+      "buttonText": "Login with Discord",
+      "debug": false,
+      "enabled": true,
+      "insertInstant": 1650677795612,
+      "lambdaConfiguration": {},
+      "linkingStrategy": "LinkByEmail",
+      "name": "Discord",
+      "oauth2": {
+        "authorization_endpoint": "https://discord.com/api/oauth2/authorize",
+        "clientAuthenticationMethod": "client_secret_post",
+        "client_id": "931870331222757486",
+        "client_secret": "ceABGfKAlhOM4ytJhDYknwo9HbQcxZ-m",
+        "emailClaim": "email",
+        "scope": "identify email",
+        "token_endpoint": "https://discord.com/api/oauth2/token",
+        "uniqueIdClaim": "id",
+        "userinfo_endpoint": "https://discord.com/api/oauth2/@me",
+        "usernameClaim": "preferred_username"
+      },
+      "postRequest": false,
+      "type": "OpenIDConnect"
+    }
+
+  ]
+}
+
