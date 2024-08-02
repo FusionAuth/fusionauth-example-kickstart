@@ -40,7 +40,7 @@ Demonstrates adding multiple tenants.
 
 *kickstart-quickstart.json*
 
-Used for example guides to by the setup wizard and quickly spin up an instance with an API key, application configuration, admin and sample user.
+Used in example guides to bypass the setup wizard and quickly spin up a FusionAuth instance with an API key, application configuration, admin and sample user.
 
 ### Example Apps
 
