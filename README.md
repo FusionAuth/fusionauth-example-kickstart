@@ -17,6 +17,7 @@ See [Kickstart Documentation](https://fusionauth.io/docs/v1/tech/installation-gu
 |  |- kickstart-development.json
 |  |- kickstart-kitchen-sink.json
 |  |- kickstart-multipleTenants.json
+|  |- kickstart-quickstart.json
 ```
 
 ### Kickstart Examples
@@ -36,6 +37,10 @@ Shows an example of a bit of everything, including environment variables, UUID g
 *kickstart-multiple-tenants.json*
 
 Demonstrates adding multiple tenants.
+
+*kickstart-quickstart.json*
+
+Used for example guides to by the setup wizard and quickly spin up an instance with an API key, application configuration, admin and sample user.
 
 ### Example Apps
 
