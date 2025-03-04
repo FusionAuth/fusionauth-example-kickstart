@@ -22,12 +22,6 @@ This is the simple Kickstart file that simple creates an admin user `admin@examp
 
 This kickstart is used by FusionAuth in development to bypass the setup wizard and create a few example users and configurations.
 
-*docs-and-blog*
-
-This directory contains kickstart files corresponding to example applications and blog posts.
-
-See https://fusionauth.io/docs/extend/examples/ and https://fusionauth.io/blog/ for some of these examples.
-
 *kitchen-sink*
 
 Shows an example of a bit of everything, including environment variables, UUID generation, including JSON files and text files and changing the default tenantId.
