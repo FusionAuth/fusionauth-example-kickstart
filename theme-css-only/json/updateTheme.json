@@ -4,8 +4,7 @@
   "url" : "api/theme/#{themeID}",
   "body" : {
     "theme" : {
-      "stylesheet" : "@{darkTheme.css}",
-      "defaultMessages" : "@{defaultMessages.txt}"
+      "stylesheet" : "@{darkTheme.css}"
     }
   }
 }
