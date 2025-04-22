@@ -1,0 +1,10 @@
+
+{
+  "method" : "PATCH",
+  "url" : "api/theme/#{themeID}",
+  "body" : {
+    "theme" : {
+      "stylesheet" : "@{darkTheme.css}"
+    }
+  }
+}

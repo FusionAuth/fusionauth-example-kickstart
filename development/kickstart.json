@@ -1,7 +1,8 @@
 {
   "variables": {
     "adminEmail": "admin@fusionauth.io",
-    "password": "password",
+    "adminPassword": "password",
+    "userPassword": "password",
     "defaultTenantId": "30663132-6464-6665-3032-326466613934"
   },
   "apiKeys": [
@@ -38,8 +39,8 @@
         "emailTemplate": {
           "defaultFromName": "FusionAuth Development",
           "defaultSubject": "Reset your password",
-          "defaultHtmlTemplate": "@{emails/change-password.html.ftl}",
-          "defaultTextTemplate": "@{emails/change-password.txt.ftl}",
+          "defaultHtmlTemplate": "@{emails/forgot-password.html.ftl}",
+          "defaultTextTemplate": "@{emails/forgot-password.txt.ftl}",
           "fromEmail": "dev@fusionauth.io",
           "name": "Forgot Password"
         }
@@ -89,6 +90,20 @@
     },
     {
       "method": "POST",
+      "url": "/api/email/template/8e1d6af1-dcda-41d9-85fb-48a1376d4e29",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "Create your parental account",
+          "defaultHtmlTemplate": "@{emails/parent-registration.html.ftl}",
+          "defaultTextTemplate": "@{emails/parent-registration.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Parent Registration"
+        }
+      }
+    },
+    {
+      "method": "POST",
       "url": "/api/email/template/fa6668cb-8569-44df-b0a2-8fcd996df915",
       "body": {
         "emailTemplate": {
@@ -98,6 +113,20 @@
           "defaultTextTemplate": "@{emails/passwordless-login.txt.ftl}",
           "fromEmail": "dev@fusionauth.io",
           "name": "Passwordless Login"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/email/template/e3da3003-972f-4a02-8c7e-dae6455a6478",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "Confirm your child's account",
+          "defaultHtmlTemplate": "@{emails/confirm-child-account.html.ftl}",
+          "defaultTextTemplate": "@{emails/confirm-child-account.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Confirm Child Account"
         }
       }
     },
@@ -122,8 +151,8 @@
         "emailTemplate": {
           "defaultFromName": "FusionAuth Development",
           "defaultSubject": "Reminder: Notice of your consent",
-          "defaultHtmlTemplate": "@{emails/coppa-email-plus-notice.html.ftl}",
-          "defaultTextTemplate": "@{emails/coppa-email-plus-notice.txt.ftl}",
+          "defaultHtmlTemplate": "@{emails/coppa-notice-reminder.html.ftl}",
+          "defaultTextTemplate": "@{emails/coppa-notice-reminder.txt.ftl}",
           "fromEmail": "dev@fusionauth.io",
           "name": "COPPA Notice Reminder"
         }
@@ -136,10 +165,66 @@
         "emailTemplate": {
           "defaultFromName": "FusionAuth Development",
           "defaultSubject": "Your password is not secure",
-          "defaultHtmlTemplate": "@{emails/breached-password.html.ftl}",
-          "defaultTextTemplate": "@{emails/breached-password.txt.ftl}",
+          "defaultHtmlTemplate": "@{emails/breached-password-notification.html.ftl}",
+          "defaultTextTemplate": "@{emails/breached-password-notification.txt.ftl}",
           "fromEmail": "dev@fusionauth.io",
           "name": "Breached Password Notification"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/email/template/68349684-10b7-453d-805b-6b81d8ef6f6f",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "Threat Detected",
+          "defaultHtmlTemplate": "@{emails/threat-detected.html.ftl}",
+          "defaultTextTemplate": "@{emails/threat-detected.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Threat Detected"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/email/template/481ea459-6aa8-4ada-badd-605c6dcda709",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "Your second factor code",
+          "defaultHtmlTemplate": "@{emails/two-factor-authentication.html.ftl}",
+          "defaultTextTemplate": "@{emails/two-factor-authentication.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Two Factor Authentication"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/email/template/0c4aa5f1-565e-4113-8b8e-8b58e7ef403b",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "A second factor was added",
+          "defaultHtmlTemplate": "@{emails/two-factor-authentication-method-added.html.ftl}",
+          "defaultTextTemplate": "@{emails/two-factor-authentication-method-added.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Two Factor Authentication Method Added"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/email/template/01e21c7b-e293-4e45-9de5-96dec4a92a0b",
+      "body": {
+        "emailTemplate": {
+          "defaultFromName": "FusionAuth Development",
+          "defaultSubject": "A second factor was removed",
+          "defaultHtmlTemplate": "@{emails/two-factor-authentication-method-removed.html.ftl}",
+          "defaultTextTemplate": "@{emails/two-factor-authentication-method-removed.txt.ftl}",
+          "fromEmail": "dev@fusionauth.io",
+          "name": "Two Factor Authentication Method Removed"
         }
       }
     },
@@ -152,7 +237,7 @@
           "email": "#{adminEmail}",
           "firstName": "Erlich",
           "lastName": "Bachman",
-          "password": "#{password}",
+          "password": "#{adminPassword}",
           "data": {
             "Company": "PiedPiper",
             "PreviousCompany": "Aviato",
@@ -175,7 +260,7 @@
           "email": "jared@fusionauth.io",
           "firstName": "Jared",
           "lastName": "Dunn",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -197,7 +282,7 @@
           "email": "nelson@fusionauth.io",
           "firstName": "Nelson",
           "lastName": "Bighetti",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -219,7 +304,7 @@
           "email": "dinesh@fusionauth.io",
           "firstName": "Dinish",
           "lastName": "Chugtai",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -241,7 +326,7 @@
           "email": "gilfoyle@fusionauth.io",
           "firstName": "Bertram",
           "lastName": "Gilfoyle",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -263,7 +348,7 @@
           "email": "richard@fusionauth.io",
           "firstName": "Richard",
           "lastName": "Hendricks",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -285,7 +370,7 @@
           "email": "monica@fusionauth.io",
           "firstName": "Monica",
           "lastName": "Hall",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },
@@ -307,7 +392,7 @@
           "email": "jian@fusionauth.io",
           "firstName": "Jìan",
           "lastName": "Yáng",
-          "password": "#{password}",
+          "password": "#{userPassword}",
           "data": {
             "Company": "PiedPiper"
           },

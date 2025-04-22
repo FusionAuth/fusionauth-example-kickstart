@@ -1,0 +1,9 @@
+{
+  "method": "PATCH",
+  "url": "/api/tenant/#{defaultTenantId}",
+  "body": {
+    "tenant": {
+      "themeId": "#{themeID}"
+    }
+  }
+}

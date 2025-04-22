@@ -1,0 +1,8 @@
+{"method": "POST",
+  "url": "/api/user/registration/#{userID}",
+  "body": {
+    "registration": {
+      "applicationId": "#{applicationID}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "method": "POST",
+  "url": "/api/user/registration/#{userID}",
+  "body": {
+    "user": {
+      "email": "richard@example.com",
+      "password": "password"
+    },
+    "registration": {
+      "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+      "roles": [
+        "admin"
+      ]
+    }
+  }
+}

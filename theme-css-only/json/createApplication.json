@@ -1,0 +1,22 @@
+{
+  "method" : "POST",
+  "url" : "/api/application/#{applicationID}",
+  "body" : {
+    "application":{
+      "name" : "Kickstart App",
+      "oauthConfiguration" : {
+        "authorizedRedirectURLs" : [
+          "http://localhost:3000/oauth-redirect"
+        ],
+        "clientId" : "#{applicationID}",
+        "clientSecret" : "#{clientSecret}",
+        "logoutURL": "http://localhost:3000/logout",
+        "enabledGrants": [
+          "authorization_code",
+          "refresh_token"
+        ],
+        "requireRegistration" : "true"
+      }
+    }
+  }
+}
