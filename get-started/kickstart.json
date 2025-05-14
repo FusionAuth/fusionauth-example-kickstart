@@ -57,7 +57,11 @@
             "enabled": true,
             "accessTokenKeyId": "#{asymmetricKeyId}",
             "idTokenKeyId": "#{asymmetricKeyId}"
-          }
+          },
+          "roles": [
+            "admin",
+            "user"
+          ]
         }
       }
     },
@@ -89,20 +93,38 @@
     },
     {
       "method": "POST",
+      "url": "/api/user/registration/#{adminUserId}",
+      "body": {
+        "registration": {
+          "applicationId": "#{applicationId}",
+          "data": {
+            "favoriteColor": "blue"
+          },
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
       "url": "/api/user/registration/#{userUserId}",
       "body": {
+        "registration": {
+          "applicationId": "#{applicationId}",
+          "data": {
+            "favoriteColor": "turquoise"
+          },
+          "roles": [
+            "user"
+          ]
+        },
         "user": {
           "birthDate": "1985-11-23",
           "email": "#{userEmail}",
           "firstName": "Richard",
           "lastName": "Hendricks",
           "password": "#{userPassword}"
-        },
-        "registration": {
-          "applicationId": "#{applicationId}",
-          "data": {
-            "favoriteColor": "turquoise"
-          }
         }
       }
     },
