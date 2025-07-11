@@ -56,7 +56,11 @@
             "enabled": true,
             "accessTokenKeyId": "#{asymmetricKeyId}",
             "idTokenKeyId": "#{asymmetricKeyId}"
-          }
+          },
+          "roles": [
+            { "name": "admin" },
+            { "name": "user", "isDefault": true }
+          ]
         }
       }
     },
