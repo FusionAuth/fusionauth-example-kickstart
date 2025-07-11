@@ -101,7 +101,10 @@
           "applicationId": "#{applicationId}",
           "data": {
             "favoriteColor": "turquoise"
-          }
+          },
+          "roles": [
+            "user"
+          ]
         }
       }
     },
