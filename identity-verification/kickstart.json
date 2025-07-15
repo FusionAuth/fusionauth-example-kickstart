@@ -1,10 +1,19 @@
 {
+  "licenseId": "LICENSE_KEY",
   "variables": {
-    "apiKey": "33052c8a-c283-4e96-9d2a-eb1215c69f8f-not-for-prod",
+    "fideoAPIKey": "FIDEO_API_KEY",
+
+    "apiKey": "yRjz6F6Ey5sk5ucLJL1KLzPpGmcyrCc03FRdCGnF-not-for-prod",
+    "applicationReadOnlyApiKey": "AZG3wqG2fD8ZCJmyPUAgAZG3wqG2fD8ZCJmyPUAg-not-for-prod",
     "asymmetricKeyId": "#{UUID()}",
     "applicationId": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8e",
+    "emailFieldId": "#{UUID()}",
+    "passwordFieldId": "#{UUID()}",
+    "firstNameFieldId": "#{UUID()}",
+    "customFormId": "#{UUID()}",
     "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
     "newThemeId": "#{UUID()}",
+    "selfServiceRegistrationValidationLambdaId": "#{UUID()}",
     "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
     "adminEmail": "admin@example.com",
     "adminPassword": "password",
@@ -17,6 +26,15 @@
     {
       "key": "#{apiKey}",
       "description": "Unrestricted API key"
+    },
+    {
+      "key": "#{applicationReadOnlyApiKey}",
+      "description": "Read-only access to applications",
+      "permissions": {
+        "endpoints": {
+          "/api/application": ["GET"]
+        }
+      }
     }
   ],
   "requests": [
@@ -34,11 +52,97 @@
     },
     {
       "method": "POST",
+      "url": "/api/lambda/#{selfServiceRegistrationValidationLambdaId}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "lambda": {
+          "body": "@{lambdas/fideo.js}",
+          "debug": true,
+          "name": "Fideo Self Service Registration Validation",
+          "type": "SelfServiceRegistrationValidation"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{emailFieldId}",
+      "body": {
+        "field": {
+          "name": "user.email",
+          "key": "user.email",
+          "type": "email",
+          "required": true,
+          "control": "text",
+          "data": {
+            "leftAddon": "user"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{passwordFieldId}",
+      "body": {
+        "field": {
+          "name": "user.password",
+          "key": "user.password",
+          "type": "string",
+          "required": true,
+          "control": "password",
+          "data": {
+            "leftAddon": "lock"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/field/#{firstNameFieldId}",
+      "body": {
+        "field": {
+          "name": "user.firstName",
+          "key": "user.firstName",
+          "type": "string",
+          "required": true,
+          "control": "text",
+          "data": {
+            "leftAddon": "user"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/form/#{customFormId}",
+      "body": {
+        "form": {
+          "name": "Custom Registration",
+          "type": "registration",
+          "steps": [
+            {
+              "fields": [
+                "#{emailFieldId}",
+                "#{passwordFieldId}",
+                "#{firstNameFieldId}"
+              ]
+            }
+          ],
+          "data": {
+            "description": "Custom registration form with email and password fields"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
       "url": "/api/application/#{applicationId}",
       "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
           "name": "ExampleApp",
+          "data": {
+            "fideoAPIKey" : "#{fideoAPIKey}"
+          },
           "oauthConfiguration": {
             "authorizedRedirectURLs": [
               "http://localhost:8080/oauth-redirect"
@@ -51,6 +155,16 @@
             ],
             "generateRefreshTokens": true,
             "requireRegistration": true
+          },
+          "lambdaConfiguration": {
+            "selfServiceRegistrationValidationId": "#{selfServiceRegistrationValidationLambdaId}"
+          },
+          "registrationConfiguration": {
+            "enabled": true,
+            "type": "advanced",
+            "formId": "#{customFormId}",
+            "confirmPassword": true,
+            "loginIdType": "email"
           },
           "jwtConfiguration": {
             "enabled": true,
@@ -127,7 +241,8 @@
       "url": "/api/theme/#{newThemeId}",
       "body": {
         "theme": {
-          "stylesheet": "@{css/styles.css}"
+          "stylesheet": "@{css/styles.css}",
+          "defaultMessages": "@{themes/messages.properties}"
         }
       }
     },
