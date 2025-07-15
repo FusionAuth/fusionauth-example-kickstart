@@ -6,16 +6,16 @@ const FAIL_THRESHOLD = 0.6;
 function validate(result, user, registration, formContext) {
   try {
 
-    const fideoAPIKey = getAPIKey();
+    var fideoAPIKey = getAPIKey();
 
     if (!fideoAPIKey) {
       throw new Error("No API Key available");
     }
 
-    const emails = [ user.email ];
-    const firstName  = user.firstName;
+    var emails = [ user.email ];
+    var firstName  = user.firstName;
 
-    const response = fetch("https://api.fideo.ai/verify", {
+    var response = fetch("https://api.fideo.ai/verify", {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + fideoAPIKey,
@@ -27,12 +27,12 @@ function validate(result, user, registration, formContext) {
       })
     });
     
-    let registrationSucceed = false;
+    var registrationSucceed = false;
     
     if (response.status == 200) {
       try {
-        const responseData = JSON.parse(response.body);
-        const risk = responseData.risk;
+        var responseData = JSON.parse(response.body);
+        var risk = responseData.risk;
         if (risk && risk < FAIL_THRESHOLD) {
           registrationSucceed = true;
         }
@@ -57,19 +57,19 @@ function validate(result, user, registration, formContext) {
 // tag::getapikey
 // pull API key off of application.data field using a limited API key
 function getAPIKey() {
-  const response = fetch("http://localhost:9012/api/application/e9fdb985-9173-4e01-9d73-ac2d60d1dc8e", {
+  var response = fetch("http://localhost:9012/api/application/e9fdb985-9173-4e01-9d73-ac2d60d1dc8e", {
     method: "GET",
     headers: {
       "Authorization": "AZG3wqG2fD8ZCJmyPUAgAZG3wqG2fD8ZCJmyPUAg-not-for-prod"
     }
   });
 
-  let fideoAPIKey = "";
+  var fideoAPIKey = "";
   if (response.status === 200) {
     // a successful response as defined in the Application API
-    const jsonResponse = JSON.parse(response.body);
-    const application = jsonResponse.application;
-    const data = application.data;
+    var jsonResponse = JSON.parse(response.body);
+    var application = jsonResponse.application;
+    var data = application.data;
     fideoAPIKey = data.fideoAPIKey;
   }
   return fideoAPIKey;
