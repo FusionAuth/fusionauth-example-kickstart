@@ -77,7 +77,7 @@ function getAPIKey() {
 // end::getapikey
 
 // tag::registrationfail
-function trackRegistrationStarted(email) {
+function trackRegistrationFailed(email) {
   var response = fetch("http://example.com/trackregistrationfail", {
     method: "POST",
     headers: {
