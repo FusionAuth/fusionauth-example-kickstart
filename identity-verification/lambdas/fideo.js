@@ -1,5 +1,5 @@
 // tag::failthreshold
-const FAIL_THRESHOLD = 0.6;
+var FAIL_THRESHOLD = 0.6;
 // end::failthreshold
 
 // tag::validate
