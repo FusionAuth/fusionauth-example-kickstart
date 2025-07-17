@@ -75,3 +75,18 @@ function getAPIKey() {
   return fideoAPIKey;
 }
 // end::getapikey
+
+// tag::startofregistration
+function trackRegistrationStarted() {
+  var response = fetch("http://example.com/trackregistrationstarted", {
+    method: "GET",
+    headers: {
+      "Authorization": "APIKEY"
+    }
+  });
+
+  if (response.status !== 200) {
+    console.log("error tracking registration: " + response.status);
+  }
+}
+// end::startofregistration
