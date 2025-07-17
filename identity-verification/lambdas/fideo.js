@@ -77,12 +77,16 @@ function getAPIKey() {
 // end::getapikey
 
 // tag::startofregistration
-function trackRegistrationStarted() {
+function trackRegistrationStarted(email) {
   var response = fetch("http://example.com/trackregistrationstarted", {
-    method: "GET",
+    method: "POST",
     headers: {
-      "Authorization": "APIKEY"
-    }
+      "Authorization": "APIKEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email: email
+    })
   });
 
   if (response.status !== 200) {
