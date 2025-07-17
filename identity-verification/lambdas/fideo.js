@@ -76,9 +76,9 @@ function getAPIKey() {
 }
 // end::getapikey
 
-// tag::startofregistration
+// tag::registrationfail
 function trackRegistrationStarted(email) {
-  var response = fetch("http://example.com/trackregistrationstarted", {
+  var response = fetch("http://example.com/trackregistrationfail", {
     method: "POST",
     headers: {
       "Authorization": "APIKEY",
@@ -93,4 +93,4 @@ function trackRegistrationStarted(email) {
     console.log("error tracking registration: " + response.status);
   }
 }
-// end::startofregistration
+// end::registrationfail
